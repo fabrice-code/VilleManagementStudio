@@ -1,0 +1,83 @@
+﻿<Page
+    x:Class="VilleManagementStudio.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VilleManagementStudio"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0" To="Pressed"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0:0:0.05" To="SteelBlue" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Storyboard.TargetName="BorderButton" d:IsOptimized="True"/>
+                                            <ColorAnimation Duration="0:0:0.05" To="White" Storyboard.TargetProperty="(ContentPresenter.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="contentPresenter" d:IsOptimized="True"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                    <VisualState x:Name="PointerOver"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="BorderButton" BorderThickness="2" BorderBrush="SteelBlue" Background="WhiteSmoke" CornerRadius="5">
+                                <ContentPresenter x:Name="contentPresenter" Content="{TemplateBinding Content}" Foreground="SteelBlue" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin=" 0 5">
+                                    <ContentPresenter.RenderTransform>
+                                        <CompositeTransform/>
+                                    </ContentPresenter.RenderTransform>
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border BorderBrush="#FF092D51" BorderThickness="4" Background="#34495e" Grid.Row="1" Grid.Column="1" Opacity="0.9" CornerRadius="20">
+            <Grid HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,30,0,0">
+                    <TextBlock Text="Ville Management Studio" FontSize="26"></TextBlock>
+                </StackPanel>
+
+                <Grid Grid.Row="1" HorizontalAlignment="Center" Margin="0,30,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Content="Jouer" Margin=" 0 20" Width="180" Click="OnNewGameEvent"></Button>
+                    <Button Grid.Row="1" Content="Crédit" Margin=" 0 20" Width="180" Click="OnCreditEvent"></Button>
+                    <Button Grid.Row="2" Content="Quitter" Margin=" 0 20" Width="180" Click="OnExitEvent"></Button>
+                </Grid>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Page>

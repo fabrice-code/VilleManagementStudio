@@ -1,0 +1,297 @@
+﻿<Page
+    x:Class="VilleManagementStudio.View.CityView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Style TargetType="Button" x:Name="ButtonClassic">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0" To="Pressed"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0:0:0.05" To="White" Storyboard.TargetProperty="(ContentPresenter.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="contentPresenter" d:IsOptimized="True"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                    <VisualState x:Name="PointerOver"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="5" Background="SlateGray" Margin="10 0">
+                                <ContentPresenter x:Name="contentPresenter" Content="{TemplateBinding Content}" Foreground="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="5">
+                                    <ContentPresenter.RenderTransform>
+                                        <CompositeTransform/>
+                                    </ContentPresenter.RenderTransform>
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Background="SkyBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <MediaElement x:Name="BlopSound" AudioCategory="GameEffects" Source="../Content/Sound/Blop.mp3" AutoPlay="False" Visibility="Collapsed"/>
+
+        <Border Grid.Column="0" Grid.Row="0" CornerRadius="20,20,0,0" Background="#FF1F1F1F" Margin="5,5,5,0">
+            <Grid>
+
+                <TextBlock Text="{Binding CityName}" FontSize="26" Margin="0 10" FontWeight="SemiBold" x:Name="CurrentCityName" HorizontalAlignment="Center"/>
+                <StackPanel Margin="20 40">
+                    <Border Background="WhiteSmoke" CornerRadius="5" Margin="10" BorderThickness="2" BorderBrush="SlateGray">
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <Border BorderBrush="SteelBlue" BorderThickness="1" CornerRadius="5,0,0,5" Margin="5 0" Background="SlateGray">
+                                <SymbolIcon Symbol="Globe" Foreground="LightBlue" Margin="5"/>
+                            </Border>
+                            <TextBlock Text="Attractivité : " FontSize="20" Foreground="SteelBlue" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding CityAttractivity}" FontSize="20" Foreground="SteelBlue" Margin="5 0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="WhiteSmoke" CornerRadius="5" Margin="10" BorderThickness="2" BorderBrush="SlateGray">
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <Border BorderBrush="SteelBlue" BorderThickness="1" CornerRadius="5,0,0,5" Margin="5 0" Background="SlateGray">
+                                <SymbolIcon Symbol="People" Foreground="LightBlue" Margin="5"/>
+                            </Border>
+                            <TextBlock Text="Population : " FontSize="20" Foreground="SteelBlue" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding CityPoepleCount}" FontSize="20" Foreground="SteelBlue" Margin="5 0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="WhiteSmoke" CornerRadius="5" Margin="10" BorderThickness="2" BorderBrush="SlateGray">
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <Border BorderBrush="SteelBlue" BorderThickness="1" CornerRadius="5,0,0,5" Margin="5 0" Background="SlateGray">
+                                <SymbolIcon Symbol="ContactInfo" Foreground="LightBlue" Margin="5"/>
+                            </Border>
+                            <TextBlock Text="Capacité : " FontSize="20" Foreground="SteelBlue" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="{Binding CityCapacity}" FontSize="20" Foreground="SteelBlue" Margin="5 0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="WhiteSmoke" CornerRadius="5" Margin="10" BorderThickness="2" BorderBrush="SlateGray">
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="SteelBlue" BorderThickness="1" CornerRadius="5,0,0,5" Margin="5 0" Background="SlateGray">
+                                <SymbolIcon Symbol="PreviewLink" Foreground="LightBlue" Margin="5"/>
+                            </Border>
+                            <TextBlock Grid.Column="1" Text="Taxe : " FontSize="20" Foreground="SteelBlue" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Grid.Column="2" Text="{Binding Taxes}" FontSize="20" Foreground="SteelBlue" Margin="5 0" VerticalAlignment="Center"/>
+
+                            <Button x:ConnectionId='8' Style="{StaticResource ButtonClassic}" Grid.Column="4"                    >
+                                <SymbolIcon Symbol="Add" ></SymbolIcon>
+                            </Button>
+                            <Button x:ConnectionId='9' Style="{StaticResource ButtonClassic}" Grid.Column="5"                      >
+                                <SymbolIcon Symbol="Remove"/>
+                            </Button>
+                        </Grid>
+                    </Border>
+
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" >
+                <FlipView>
+                    <Grid>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="../Content/Images/Electricity.JPG"></ImageBrush>
+                        </Grid.Background>
+                        <Grid Height="35" VerticalAlignment="Bottom" Background="DarkSlateGray">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <TextBlock Text="{Binding ElectricCentrals.Name}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Margin="20 0"></TextBlock>
+                                <TextBlock Text="{Binding ElectricCentrals.Quantity}" VerticalAlignment="Center" FontSize="20" Margin="30 0" FontWeight="SemiBold"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <TextBlock Text="{Binding ElectricCentrals.Price}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" ></TextBlock>
+                                <TextBlock Text="$" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Right"></TextBlock>
+                                <Button x:ConnectionId='7' Content="acheter" HorizontalAlignment="Right"                     ></Button>
+                            </StackPanel>
+
+                        </Grid>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="../Content/Images/Water.JPG"></ImageBrush>
+                        </Grid.Background>
+                        <Grid Height="35" VerticalAlignment="Bottom" Background="DarkSlateGray">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <TextBlock Text="{Binding WaterCentrals.Name}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Margin="20 0"></TextBlock>
+                                <TextBlock Text="{Binding WaterCentrals.Quantity}" VerticalAlignment="Center" FontSize="20" Margin="30 0" FontWeight="SemiBold"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <TextBlock Text="{Binding WaterCentrals.Price}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" ></TextBlock>
+                                <TextBlock Text="$" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Right"></TextBlock>
+                                <Button x:ConnectionId='6' Content="acheter" HorizontalAlignment="Right"                      ></Button>
+                            </StackPanel>
+
+                        </Grid>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="../Content/Images/Internet.JPG"></ImageBrush>
+                        </Grid.Background>
+                        <Grid Height="35" VerticalAlignment="Bottom" Background="DarkSlateGray">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <TextBlock Text="{Binding InternetCentrals.Name}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Margin="20 0"></TextBlock>
+                                <TextBlock Text="{Binding InternetCentrals.Quantity}" VerticalAlignment="Center" FontSize="20" Margin="30 0" FontWeight="SemiBold"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <TextBlock Text="{Binding InternetCentrals.Price}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" ></TextBlock>
+                                <TextBlock Text="$" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Right"></TextBlock>
+                                <Button x:ConnectionId='5' Content="acheter" HorizontalAlignment="Right"                        ></Button>
+                            </StackPanel>
+
+                        </Grid>
+                    </Grid>
+                </FlipView>
+
+                <Grid Height="30" VerticalAlignment="Top" Background="Black" Opacity="0.7" Margin="3">
+                    <TextBlock Text="Services" Foreground="White" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <FlipView >
+                    <Grid>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="../Content/Images/Piscine.JPG"></ImageBrush>
+                        </Grid.Background>
+                        <Grid Height="35" VerticalAlignment="Bottom" Background="DarkSlateGray">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <TextBlock Text="{Binding PiscineCenter.Name}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Margin="20 0"></TextBlock>
+                                <TextBlock Text="{Binding PiscineCenter.Quantity}" VerticalAlignment="Center" FontSize="20" Margin="30 0" FontWeight="SemiBold"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <TextBlock Text="{Binding PiscineCenter.Price}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" ></TextBlock>
+                                <TextBlock Text="$" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Right"></TextBlock>
+                                <Button x:ConnectionId='4' Content="acheter" HorizontalAlignment="Right"                        ></Button>
+                            </StackPanel>
+
+                        </Grid>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="../Content/Images/Stade.JPG"></ImageBrush>
+                        </Grid.Background>
+                        <Grid Height="35" VerticalAlignment="Bottom" Background="DarkSlateGray">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <TextBlock Text="{Binding StadeCenter.Name}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Margin="20 0"></TextBlock>
+                                <TextBlock Text="{Binding StadeCenter.Quantity}" VerticalAlignment="Center" FontSize="20" Margin="30 0" FontWeight="SemiBold"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <TextBlock Text="{Binding StadeCenter.Price}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" ></TextBlock>
+                                <TextBlock Text="$" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Right"></TextBlock>
+                                <Button x:ConnectionId='3' Content="acheter" HorizontalAlignment="Right"                      ></Button>
+                            </StackPanel>
+
+                        </Grid>
+                    </Grid>
+                </FlipView>
+                <Grid Height="30" VerticalAlignment="Top" Background="Black" Opacity="0.7" Margin="3">
+                    <TextBlock Text="Loisirs" Foreground="White" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2">
+
+                <FlipView >
+                    <Grid>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="../Content/Images/ParcNature.JPG"></ImageBrush>
+                        </Grid.Background>
+                        <Grid Height="35" VerticalAlignment="Bottom" Background="DarkSlateGray">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <TextBlock Text="{Binding NatureParcCenter.Name}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Margin="20 0"></TextBlock>
+                                <TextBlock Text="{Binding NatureParcCenter.Quantity}" VerticalAlignment="Center" FontSize="20" Margin="30 0" FontWeight="SemiBold"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <TextBlock Text="{Binding NatureParcCenter.Price}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" ></TextBlock>
+                                <TextBlock Text="$" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Right"></TextBlock>
+                                <Button x:ConnectionId='2' Content="acheter" HorizontalAlignment="Right"                     ></Button>
+                            </StackPanel>
+
+                        </Grid>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="../Content/Images/SalleShoot.JPG"></ImageBrush>
+                        </Grid.Background>
+                        <Grid Height="35" VerticalAlignment="Bottom" Background="DarkSlateGray">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <TextBlock Text="{Binding ShootRoomCenter.Name}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Margin="20 0"></TextBlock>
+                                <TextBlock Text="{Binding ShootRoomCenter.Quantity}" VerticalAlignment="Center" FontSize="20" Margin="30 0" FontWeight="SemiBold"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <TextBlock Text="{Binding ShootRoomCenter.Price}" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" ></TextBlock>
+                                <TextBlock Text="$" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Right"></TextBlock>
+                                <Button x:ConnectionId='1' Content="acheter" HorizontalAlignment="Right"                          ></Button>
+                            </StackPanel>
+
+                        </Grid>
+                    </Grid>
+                </FlipView>
+
+                <Grid Height="30" VerticalAlignment="Top" Background="Black" Opacity="0.7" Margin="3">
+                    <TextBlock Text="Aménagements" Foreground="White" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
+
